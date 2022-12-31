@@ -1,0 +1,34 @@
+{
+  "strategy_name": "TD",
+  "params": {
+    "buy": {
+      "max_epa": 10,
+      "sma_ha_close": 6
+    },
+    "sell": {
+      "sma_ha_open": 10
+    },
+    "protection": {
+      "cooldown_lookback": 4,
+      "stop_duration": 194,
+      "use_stop_protection": true
+    },
+    "roi": {
+      "0": 0.429,
+      "344": 0.191,
+      "1046": 0.073,
+      "1397": 0
+    },
+    "stoploss": {
+      "stoploss": -0.037
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.254,
+      "trailing_stop_positive_offset": 0.335,
+      "trailing_only_offset_is_reached": true
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2022-12-06 01:40:03.677954+00:00"
+}

@@ -1,0 +1,36 @@
+{
+  "strategy_name": "tacos1",
+  "params": {
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "buy": {
+      "buy_ema_long": 16,
+      "buy_ema_short": 3,
+      "max_epa": 5
+    },
+    "sell": {
+      "sell_ema_long": 17,
+      "sell_ema_short": 12
+    },
+    "protection": {
+      "cooldown_lookback": 5,
+      "stop_duration": 5,
+      "use_stop_protection": true
+    },
+    "roi": {
+      "0": 0.41500000000000004,
+      "977": 0.162,
+      "2059": 0.117,
+      "5493": 0
+    },
+    "stoploss": {
+      "stoploss": -0.188
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2022-11-08 02:08:44.509322+00:00"
+}
