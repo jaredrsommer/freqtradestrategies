@@ -16,7 +16,7 @@ from freqtrade.persistence import Trade
 logger = logging.getLogger(__name__)
 
 
-class wavetrend(IStrategy):
+class wavetrend_rsi(IStrategy):
 
 
     ### Strategy parameters ###
@@ -31,7 +31,7 @@ class wavetrend(IStrategy):
     timeframe = '1h'
     # DCA Parameters
     position_adjustment_enable = True
-    max_entry_position_adjustment = 2
+    max_entry_position_adjustment = 3
     max_dca_multiplier = 5.5
     minimal_roi = {
 
@@ -47,7 +47,10 @@ class wavetrend(IStrategy):
 
     ### Hyperoptable parameters ###
     # entry optizimation
-    max_epa = CategoricalParameter([-1, 0, 1, 3, 5, 10], default=2, space="buy", optimize=True)
+    max_epa = CategoricalParameter([-1, 0, 1, 3, 5, 10], default=3, space="buy", optimize=True)
+    dcal2 = DecimalParameter(-5, -1, default=-2.5, space="buy", optimize=True)
+    dcal3 = DecimalParameter(-8, -3, default=-5, space="buy", optimize=True)
+    dcal4 = DecimalParameter(-15, -5, default=-10, space="buy", optimize=True)
 
     # protections
     cooldown_lookback = IntParameter(2, 48, default=5, space="protection", optimize=True)
@@ -79,7 +82,7 @@ class wavetrend(IStrategy):
             prot.append({
                 "method": "StoplossGuard",
                 "lookback_period_candles": 24 * 3,
-                "trade_limit": 4,
+                "trade_limit": 8,
                 "stop_duration_candles": self.stop_duration.value,
                 "only_per_pair": False
             })
@@ -134,14 +137,17 @@ class wavetrend(IStrategy):
             # Take half of the profit at +5%
             return -(trade.stake_amount / 2)
 
-        if current_profit > -0.01 and trade.nr_of_successful_entries == 1:
-            return None
+        for level2 in self.dcal2.range:
+            if current_profit > level2 and trade.nr_of_successful_entries == 1:
+                return None
 
-        if current_profit > -0.03 and trade.nr_of_successful_entries == 2:
-            return None
+        for level3 in self.dcal3.range:
+            if current_profit > level3 and trade.nr_of_successful_entries == 2:
+                return None
 
-        if current_profit > -0.10 and trade.nr_of_successful_entries == 3:
-            return None
+        for level4 in self.dcal4.range:
+            if current_profit > level4 and trade.nr_of_successful_entries == 3:
+                return None
 
 
         # Obtain pair dataframe (just to show how to access it)
@@ -178,8 +184,8 @@ class wavetrend(IStrategy):
             return 0.05
         elif (current_profit > 0.1):
             return 0.025
-        elif (current_profit > 0.06):
-            return 0.012
+        elif (current_profit > 0.075):
+            return 0.015
 
         return self.stoploss
 
@@ -213,33 +219,15 @@ class wavetrend(IStrategy):
 
         df.loc[
             (
-                (df['wave_t1'] > df['wave_t1'].shift(1)) &  # Guard: Wave 1 is raising
-                (qtpylib.crossed_above(df['wave_t1'], df['wave_t2'])) &
-                (df['volume'] > 0)   # Make sure Volume is not 0
-            ),
-            ['enter_long', 'enter_tag']] = (1, 'WT')
-
-        df.loc[
-            (
                 # Signal: RSI crosses above 30
                 (df['rsi'] >  self.buy_rsi.value) &
                 (df['rsi'] < 60) &
-                (qtpylib.crossed_above(df['rsi'], df['rsi_ma'])) &
+                (df['rsi'] > df['rsi_ma'])&
                 (df['wave_t1'] > df['wave_t1'].shift(1)) &  # Guard: Wave 1 is raising
                 (qtpylib.crossed_above(df['wave_t1'], df['wave_t2'])) &
                 (df['volume'] > 0)   # Make sure Volume is not 0
             ),
             ['enter_long', 'enter_tag']] = (1, 'WT/RSI')
-
-        df.loc[
-            (
-                # Signal: RSI crosses above 30
-                (df['rsi'] >  self.buy_rsi.value) &
-                (df['rsi'] < 55) &
-                (qtpylib.crossed_above(df['rsi'], df['rsi_ma'])) &
-                (df['volume'] > 0)  # Make sure Volume is not 0
-            ),
-            ['enter_long', 'enter_tag']] = (1, 'RSI-XO')
 
         return df
 
@@ -256,21 +244,5 @@ class wavetrend(IStrategy):
                 (df['volume'] > 0)   # Make sure Volume is not 0
             ),
             ['exit_long', 'exit_tag']] = (1, 'WT/RSI')
-
-        df.loc[
-            (
-                (df['rsi'] > self.sell_rsi.value) &
-                (qtpylib.crossed_above(df['rsi_ma'], df['rsi'])) &
-                (df['volume'] > 0)   # Make sure Volume is not 0
-            ),
-            ['exit_long', 'exit_tag']] = (1, 'RSI-XO')
-
-        df.loc[
-            (
-                (df['wave_t1'] < df['wave_t1'].shift(1)) &  # Guard: Wave 1 is raising
-                (qtpylib.crossed_above(df['wave_t2'], df['wave_t1'])) &
-                (df['volume'] > 0)   # Make sure Volume is not 0
-            ),
-            ['exit_long', 'exit_tag']] = (1, 'WT')
 
         return df
