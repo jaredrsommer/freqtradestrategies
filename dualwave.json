@@ -1,0 +1,92 @@
+{
+  "strategy_name": "dualwave",
+  "params": {
+    "roi": {
+      "0": 0.215
+    },
+    "stoploss": {
+      "stoploss": -0.25
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "buy": {
+      "max_length": 48,
+      "auto_buy": 7,
+      "auto_buy_2": 3,
+      "auto_buy_bearzzz": 7,
+      "auto_buy_bearzzz_2": 3,
+      "auto_buy_bearzzz_down": 10,
+      "auto_buy_bearzzz_down_2": 5,
+      "auto_buy_down": 6,
+      "auto_buy_down_2": 4,
+      "buy_smoothing": 4,
+      "fast_wave_buy": -6,
+      "fast_wave_buy_pc": -1,
+      "from15": 34,
+      "from2": 6,
+      "rsi_buy": 60,
+      "rsi_buy_safe": 51,
+      "rsi_ma_buypc": -5,
+      "slow_wave_buy": -14,
+      "slow_wave_buy_pc": -1,
+      "sma200_buy_pc": -1,
+      "willr_buy": -24,
+      "x01": 3.6,
+      "x02": 2.4,
+      "x03": 4.0,
+      "x04": 3.2,
+      "x05": 4.5,
+      "x06": 4.2,
+      "x07": 4.3,
+      "x08": 1.0,
+      "x09": 2.6,
+      "x10": 4.1
+    },
+    "sell": {
+      "auto_sell_bear": 6,
+      "auto_sell_bull": 12,
+      "fast_wave_sell": -18,
+      "filterlength": 28,
+      "rsi_ma_sellpc": -2,
+      "rsi_sell": 58,
+      "rsi_sell_safe": 71,
+      "sell_smoothing": 19,
+      "slow_wave_sell": -11,
+      "sma200_sell_pc": 3,
+      "ts0": 0.015,
+      "ts1": 0.016,
+      "ts2": 0.015,
+      "ts3": 0.038,
+      "ts4": 0.045,
+      "ts5": 0.047,
+      "tsl_target0": 0.057,
+      "tsl_target1": 0.06,
+      "tsl_target2": 0.098,
+      "tsl_target3": 0.125,
+      "tsl_target4": 0.151,
+      "tsl_target5": 0.3,
+      "willr_sell": -20,
+      "y01": 3.0,
+      "y02": 4.1,
+      "y03": 3.9,
+      "y04": 2.6,
+      "y05": 1.7,
+      "y06": 4.5,
+      "y07": 1.8,
+      "y08": 1.2,
+      "y09": 4.7,
+      "y10": 5.0
+    },
+    "protection": {
+      "cooldown_lookback": 46,
+      "stop_duration": 5,
+      "use_stop_protection": true
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2023-06-29 04:22:32.258735+00:00"
+}

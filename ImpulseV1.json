@@ -1,0 +1,45 @@
+{
+  "strategy_name": "ImpulseV1",
+  "params": {
+    "stoploss": {
+      "stoploss": -0.326
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "buy": {
+      "ma_length": 23,
+      "max_epa": 2
+    },
+    "sell": {
+      "ts0": 0.008,
+      "ts1": 0.01,
+      "ts2": 0.018,
+      "ts3": 0.026,
+      "ts4": 0.05,
+      "ts5": 0.04,
+      "tsl_target0": 0.03,
+      "tsl_target1": 0.06,
+      "tsl_target2": 0.087,
+      "tsl_target3": 0.14,
+      "tsl_target4": 0.18,
+      "tsl_target5": 0.2
+    },
+    "protection": {
+      "cooldown_lookback": 23,
+      "stop_duration": 68,
+      "use_stop_protection": true
+    },
+    "roi": {
+      "0": 0.11599999999999999,
+      "144": 0.06999999999999999,
+      "232": 0.026,
+      "455": 0
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2023-06-14 01:08:56.751470+00:00"
+}
