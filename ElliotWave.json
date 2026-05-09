@@ -1,0 +1,48 @@
+{
+  "strategy_name": "ElliotWave",
+  "params": {
+    "buy": {
+      "divisor": 8,
+      "fibonacci_strict": false,
+      "lookback_period": 113,
+      "min_chng": 0.038,
+      "min_wave_confidence": 0.113,
+      "sma_period": 10,
+      "use_alternative_waves": true,
+      "use_practical12_waves": false,
+      "use_traditional_waves": false,
+      "use_wave3_signals": false,
+      "use_wave5_signals": true,
+      "use_zigzag_waves": true,
+      "validate_wave2_fib": true,
+      "validate_wave3_fib": false,
+      "validate_wave4_fib": true,
+      "validate_wave5_fib": true
+    },
+    "sell": {
+      "exit_on_opposite_wave": false,
+      "exit_on_wave5_complete": true
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.22799999999999998,
+      "1951": 0.16799999999999998,
+      "6171": 0.09,
+      "11351": 0
+    },
+    "stoploss": {
+      "stoploss": -0.141
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.011,
+      "trailing_stop_positive_offset": 0.074,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 3
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-07-26 02:50:25.910983+00:00"
+}

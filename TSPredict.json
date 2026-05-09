@@ -1,0 +1,45 @@
+{
+  "strategy_name": "TSPredict",
+  "params": {
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 45
+    },
+    "buy": {
+      "enable_guard_metric": true,
+      "cexit_min_profit_th": 0.1,
+      "cexit_profit_nstd": 1.9,
+      "enable_bb_check": false,
+      "enable_squeeze": false,
+      "entry_bb_factor": 0.87,
+      "entry_bb_width": 0.053,
+      "entry_guard_metric": -0.3
+    },
+    "sell": {
+      "enable_exit_signal": false,
+      "cexit_loss_nstd": 2.1,
+      "cexit_metric_overbought": 0.57,
+      "cexit_metric_take_profit": 0.57,
+      "cexit_min_loss_th": 0.0,
+      "exit_bb_factor": 0.87,
+      "exit_guard_metric": 0.8
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.29400000000000004,
+      "40": 0.10400000000000001,
+      "94": 0.04,
+      "142": 0
+    },
+    "stoploss": {
+      "stoploss": -0.262
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2024-05-27 16:22:09.721043+00:00"
+}

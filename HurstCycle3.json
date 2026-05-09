@@ -1,0 +1,28 @@
+{
+  "strategy_name": "HurstCycle3",
+  "params": {
+    "max_open_trades": {
+      "max_open_trades": 10
+    },
+    "buy": {},
+    "sell": {},
+    "protection": {},
+    "roi": {
+      "0": 0.252,
+      "109": 0.124,
+      "288": 0.061,
+      "648": 0
+    },
+    "stoploss": {
+      "stoploss": -0.334
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.243,
+      "trailing_stop_positive_offset": 0.325,
+      "trailing_only_offset_is_reached": true
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-03-12 02:13:37.840580+00:00"
+}

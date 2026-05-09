@@ -1,0 +1,57 @@
+{
+  "strategy_name": "TGMA",
+  "params": {
+    "buy": {
+      "buylimit": 12,
+      "entryX": 0.995,
+      "increment": 1.002,
+      "l_window_size": 39,
+      "u_window_size": 93
+    },
+    "sell": {
+      "selllimit": 23
+    },
+    "protection": {
+      "base_trades": 9,
+      "cooldown_lookback": 0,
+      "lowprofit_only_per_pair": false,
+      "lowprofit_protection_lookback": 1,
+      "lowprofit_required_profit": -0.08,
+      "lowprofit_stop_duration": 67,
+      "lowprofit_trade_limit": 5,
+      "maxdrawdown_allowed_drawdown": -0.06,
+      "maxdrawdown_protection_lookback": 8,
+      "maxdrawdown_stop_duration": 34,
+      "maxdrawdown_trade_limit": 2,
+      "stepSize": 4,
+      "stop_duration": 10,
+      "stop_protection_only_per_pair": false,
+      "stop_protection_only_per_side": true,
+      "stop_protection_required_profit": -0.05,
+      "stop_protection_trade_limit": 9,
+      "use_lowprofit_protection": false,
+      "use_maxdrawdown_protection": true,
+      "use_stop_protection": true
+    },
+    "roi": {
+      "0": 0.118,
+      "67": 0.077,
+      "252": 0.033,
+      "377": 0
+    },
+    "stoploss": {
+      "stoploss": -0.15
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.109,
+      "trailing_stop_positive_offset": 0.151,
+      "trailing_only_offset_is_reached": true
+    },
+    "max_open_trades": {
+      "max_open_trades": 10
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-04-24 02:38:32.468118+00:00"
+}

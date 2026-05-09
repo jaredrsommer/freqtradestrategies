@@ -1,0 +1,28 @@
+{
+  "strategy_name": "HurstCycleV5",
+  "params": {
+    "roi": {
+      "0": 1
+    },
+    "buy": {
+      "l_window_size": 27,
+      "u_window_size": 125
+    },
+    "sell": {},
+    "protection": {},
+    "stoploss": {
+      "stoploss": -0.015
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.014,
+      "trailing_stop_positive_offset": 0.263,
+      "trailing_only_offset_is_reached": true
+    },
+    "max_open_trades": {
+      "max_open_trades": 6
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-05-26 23:14:26.492792+00:00"
+}
