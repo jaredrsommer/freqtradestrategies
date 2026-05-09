@@ -1,0 +1,57 @@
+{
+  "strategy_name": "IchiVwapAdx",
+  "params": {
+    "roi": {
+      "0": 0.2,
+      "60": 0.15,
+      "120": 0.1,
+      "240": 0.05,
+      "480": 0.02
+    },
+    "stoploss": {
+      "stoploss": -0.05
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 6
+    },
+    "buy": {
+      "adx_strong_threshold": 30.0,
+      "adx_weight": 1,
+      "base_position_size": 1.0,
+      "cloud_quality_lookback": 20,
+      "cloud_quality_percentile": 20.0,
+      "ichimoku_weight": 2,
+      "max_position_multiplier": 2.0,
+      "min_entry_score": 3,
+      "min_volatility_ratio": 0.5,
+      "volatility_filter": true,
+      "vwap_weight": 1,
+      "adx_period": 18,
+      "adx_threshold": 24.3,
+      "ichimoku_kijun_period": 23,
+      "ichimoku_senkou_period": 46,
+      "ichimoku_tenkan_period": 7,
+      "vwap_period": 29,
+      "vwap_std_multiplier": 0.435
+    },
+    "sell": {
+      "emergency_adx_threshold": 15.0,
+      "atr_multiplier": 1.847,
+      "atr_period": 11,
+      "cloud_exit_periods": 3,
+      "min_profit_exit_threshold": 0.016,
+      "take_profit_1": 1.788,
+      "take_profit_2": 3.282,
+      "vwap_exit_multiplier": 2.224
+    },
+    "protection": {}
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-06-13 14:14:10.836591+00:00"
+}

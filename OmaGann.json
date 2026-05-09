@@ -1,0 +1,32 @@
+{
+  "strategy_name": "OmaGann",
+  "params": {
+    "buy": {
+      "clsper_param": 3,
+      "const_param": 3.43,
+      "len_param": 13
+    },
+    "sell": {},
+    "protection": {},
+    "roi": {
+      "0": 0.11300000000000002,
+      "418": 0.07600000000000001,
+      "1323": 0.041,
+      "2236": 0
+    },
+    "stoploss": {
+      "stoploss": -0.13
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.136,
+      "trailing_stop_positive_offset": 0.17700000000000002,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 8
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-04-17 01:52:18.075572+00:00"
+}

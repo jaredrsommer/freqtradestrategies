@@ -1,0 +1,62 @@
+{
+  "strategy_name": "LorentzianClassification",
+  "params": {
+    "roi": {
+      "0": 0.167,
+      "477": 0.115,
+      "1178": 0.05,
+      "1991": 0
+    },
+    "stoploss": {
+      "stoploss": -0.15
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.146,
+      "trailing_stop_positive_offset": 0.156,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 10
+    },
+    "buy": {
+      "adx_length": 10,
+      "adx_smooth": 13,
+      "adx_threshold": 64,
+      "cci_length": 8,
+      "cci_smooth": 5,
+      "color_compression": 6,
+      "feature_1": 1,
+      "feature_2": 1,
+      "feature_3": 2,
+      "feature_4": 3,
+      "feature_5": 0,
+      "feature_count": 3,
+      "limit": 7.3,
+      "lookback_window": 39,
+      "max_bars_back": 3589,
+      "neighbors_count": 63,
+      "norm_window": 142,
+      "regime_threshold": 0.3,
+      "relative_weighting": 2.99,
+      "rsi_length": 25,
+      "rsi_smooth": 11,
+      "smooth_period": 5,
+      "smooth_predictions": true,
+      "start_regression_at_bar": 1,
+      "trade_with_kernel": true,
+      "use_adx_filter": true,
+      "use_regime_filter": true,
+      "use_volatility_filter": true,
+      "wt_length": 7,
+      "wt_smooth": 3
+    },
+    "sell": {
+      "show_exits": true,
+      "use_dynamic_exits": true
+    },
+    "protection": {}
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-04-20 03:36:27.492163+00:00"
+}

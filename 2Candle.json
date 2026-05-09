@@ -1,0 +1,36 @@
+{
+  "strategy_name": "Candle2",
+  "params": {
+    "buy": {
+      "buy_threshold": 6.6,
+      "fast_rsi": 6,
+      "rsi_threshold": 40.0,
+      "sr_length": 12,
+      "sr_shift": 12
+    },
+    "sell": {
+      "sell_threshold": 3.0
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.125,
+      "480": 0.09,
+      "1200": 0.056,
+      "2640": 0
+    },
+    "stoploss": {
+      "stoploss": -0.11
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.01,
+      "trailing_stop_positive_offset": 0.259,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 3
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-07-12 10:05:44.371182+00:00"
+}

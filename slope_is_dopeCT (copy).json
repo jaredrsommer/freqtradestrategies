@@ -1,0 +1,50 @@
+{
+  "strategy_name": "slope_is_dopeCT",
+  "params": {
+    "roi": {
+      "0": 0.609,
+      "12443": 0.25,
+      "19865": 0.11,
+      "44116": 0
+    },
+    "stoploss": {
+      "stoploss": -0.9
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.03,
+      "trailing_stop_positive_offset": 0.28,
+      "trailing_only_offset_is_reached": true
+    },
+    "buy": {
+      "fslope_buy": -4,
+      "rsi_buy": 56,
+      "rsi_length": 11,
+      "slope_length": 29,
+      "sslope_buy": 0
+    },
+    "sell": {
+      "fslope_sell": -4,
+      "stoploss_length": 9,
+      "ts0": 0.008,
+      "ts1": 0.012,
+      "ts2": 0.017,
+      "ts3": 0.028,
+      "ts4": 0.04,
+      "ts5": 0.05,
+      "tsl_target0": 0.047,
+      "tsl_target1": 0.067,
+      "tsl_target2": 0.094,
+      "tsl_target3": 0.12,
+      "tsl_target4": 0.2,
+      "tsl_target5": 0.2
+    },
+    "protection": {
+      "cooldown_lookback": 5,
+      "stop_duration": 5,
+      "use_stop_protection": true
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2023-04-21 05:04:17.666908+00:00"
+}

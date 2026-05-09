@@ -1,0 +1,31 @@
+{
+  "strategy_name": "PnF",
+  "params": {
+    "roi": {},
+    "stoploss": {
+      "stoploss": -0.99
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "buy": {
+      "box_size": 3.9
+    },
+    "sell": {
+      "reversal": 0.1
+    },
+    "protection": {
+      "cooldown_lookback": 12,
+      "stop_duration": 5,
+      "use_stop_protection": true
+    },
+    "max_open_trades": {
+      "max_open_trades": -1
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2024-11-27 01:41:59.601815+00:00"
+}

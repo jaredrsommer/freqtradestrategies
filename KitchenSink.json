@@ -1,0 +1,85 @@
+{
+  "strategy_name": "KitchenSink",
+  "params": {
+    "roi": {
+      "0": 0.1
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": 0.035,
+      "trailing_stop_positive_offset": 0.013,
+      "trailing_only_offset_is_reached": true
+    },
+    "buy": {
+      "action": 2,
+      "buy_thres": 0.2,
+      "hurst_filldelay": 153,
+      "hurst_max_epa": 0,
+      "l_window_size": 37,
+      "omagann_clsper_param": 4,
+      "omagann_const_param": 4.825,
+      "omagann_len_param": 16,
+      "rsi_period": 20,
+      "rsibuy_thres": 54.3,
+      "tgma_buylimit_param": 8,
+      "tgma_entryX": 0.996,
+      "tgma_increment": 1.0012,
+      "tgma_l_window_size": 27,
+      "tgma_u_window_size": 136,
+      "u_window_size": 93,
+      "vvrp_high_volume_threshold": 0.115,
+      "vvrp_lookback_period": 265,
+      "vvrp_max_bars": 121,
+      "vvrp_num_bins": 12,
+      "vvrp_rsi_overbought": 55,
+      "vvrp_rsi_oversold": 45,
+      "vvrp_trend_smoothing": 8
+    },
+    "sell": {
+      "hurst_level0": 0.4,
+      "hurst_level1": 0.61,
+      "hurst_time0": 1584,
+      "hurst_time1": 1658,
+      "hurst_time2": 3147,
+      "hurst_time3": 2890,
+      "hurst_use0": false,
+      "hurst_use1": false,
+      "hurst_use2": true,
+      "rsisell_thres": 57.7,
+      "sell_thres": 0.85,
+      "tgma_selllimit_param": 21
+    },
+    "protection": {
+      "hurst_use_stop1": true,
+      "hurst_use_stop2": true,
+      "hurst_use_stop3": true,
+      "hurst_use_stop4": false,
+      "tgma_cooldown_lookback": 12,
+      "tgma_lowprofit_only_per_pair": true,
+      "tgma_lowprofit_protection_lookback": 23,
+      "tgma_lowprofit_required_profit": -0.06,
+      "tgma_lowprofit_stop_duration": 1,
+      "tgma_lowprofit_trade_limit": 8,
+      "tgma_maxdrawdown_allowed_drawdown": -0.04,
+      "tgma_maxdrawdown_protection_lookback": 5,
+      "tgma_maxdrawdown_stop_duration": 21,
+      "tgma_maxdrawdown_trade_limit": 12,
+      "tgma_stop_duration": 37,
+      "tgma_stop_protection_only_per_pair": true,
+      "tgma_stop_protection_only_per_side": true,
+      "tgma_stop_protection_required_profit": 0.01,
+      "tgma_stop_protection_trade_limit": 3,
+      "tgma_use_lowprofit_protection": true,
+      "tgma_use_maxdrawdown_protection": false,
+      "tgma_use_stop_protection": true
+    },
+    "stoploss": {
+      "stoploss": -0.138
+    },
+    "max_open_trades": {
+      "max_open_trades": 3
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-06-15 02:57:38.796659+00:00"
+}

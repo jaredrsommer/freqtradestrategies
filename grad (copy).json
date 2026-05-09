@@ -1,0 +1,53 @@
+{
+  "strategy_name": "grad",
+  "params": {
+    "buy": {
+      "entryX": 0.999,
+      "increment": 1.0016,
+      "smooth": 2
+    },
+    "sell": {},
+    "protection": {
+      "base_trades": 10,
+      "cooldown_lookback": 2,
+      "lowprofit_only_per_pair": false,
+      "lowprofit_protection_lookback": 4,
+      "lowprofit_required_profit": -0.04,
+      "lowprofit_stop_duration": 52,
+      "lowprofit_trade_limit": 5,
+      "maxdrawdown_allowed_drawdown": -0.05,
+      "maxdrawdown_protection_lookback": 9,
+      "maxdrawdown_stop_duration": 11,
+      "maxdrawdown_trade_limit": 16,
+      "stepSize": 4,
+      "stop_duration": 6,
+      "stop_protection_only_per_pair": false,
+      "stop_protection_only_per_side": false,
+      "stop_protection_required_profit": -0.09,
+      "stop_protection_trade_limit": 8,
+      "use_lowprofit_protection": true,
+      "use_maxdrawdown_protection": true,
+      "use_stop_protection": false
+    },
+    "roi": {
+      "0": 0.468,
+      "555": 0.21400000000000002,
+      "1737": 0.08,
+      "2921": 0
+    },
+    "stoploss": {
+      "stoploss": -0.125
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.01,
+      "trailing_stop_positive_offset": 0.08099999999999999,
+      "trailing_only_offset_is_reached": true
+    },
+    "max_open_trades": {
+      "max_open_trades": 3
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-01-25 22:30:00.900961+00:00"
+}

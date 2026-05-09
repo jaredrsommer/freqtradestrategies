@@ -76,13 +76,13 @@ class eltoro1_4_simple(IStrategy):
     use_stop_protection = BooleanParameter(default=True, space="protection", optimize=True)
 
     # SMAOffset
-    base_nb_candles_buy = IntParameter(25, 60, default=25, space='buy', optimize=True)
-    base_nb_candles_sell = IntParameter(30, 60, default=49, space='sell', optimize=True)
-    low_offset = DecimalParameter(0.97, 0.99, default=0.97, decimals=2, space='buy', optimize=True)
-    high_offset = DecimalParameter(1.01, 1.05, default=1.01,  decimals=2, space='sell', optimize=True)
-    high_offset_2 = DecimalParameter(1.05, 1.1, default=1.05, decimals=2, space='sell', optimize=True)   
+    base_nb_candles_buy = IntParameter(5, 60, default=25, space='buy', optimize=True)
+    base_nb_candles_sell = IntParameter(5, 60, default=49, space='sell', optimize=True)
+    low_offset = DecimalParameter(0.9, 0.99, default=0.97, decimals=2, space='buy', optimize=True)
+    high_offset = DecimalParameter(1.0, 1.1, default=1.00,  decimals=2, space='sell', optimize=True)
+    high_offset_2 = DecimalParameter(1.1, 1.5, default=1.3, decimals=2, space='sell', optimize=True)   
     max_length = CategoricalParameter([24, 48, 72, 96, 144, 192, 240], default=48, space="buy", optimize=False)
-    decision_length = IntParameter(30, 60, default=25, space='buy', optimize=True)
+    decision_length = IntParameter(5, 60, default=25, space='buy', optimize=True)
 
     # Buy Parameters
     rsi_buy = IntParameter(55, 70, default=65, space='buy', optimize=True)
@@ -97,11 +97,10 @@ class eltoro1_4_simple(IStrategy):
     auto_buy_down = IntParameter(5, 15, default=10, space='buy', optimize=True)
     auto_buy_bearzzz = IntParameter(5, 15, default=5, space='buy', optimize=True)
     auto_buy_bearzzz_down = IntParameter(5, 15, default=5, space='buy', optimize=True)
-    auto_buy_EWO = IntParameter(8, 15, default=10, space='buy', optimize=True)
 
 
     # Buy Parameters
-    rsi_sell = IntParameter(60, 70, default=64, space='sell', optimize=True)
+    rsi_sell = IntParameter(55, 70, default=50, space='sell', optimize=True)
     rsi_sell_safe = IntParameter(60, 80, default=70, space='sell', optimize=True)
     rsi_ma_sellpc = IntParameter(-5, 5, default=0, space='sell', optimize=True)
     sma200_sell_pc = IntParameter(-5, 5, default=0, space='sell', optimize=True)
@@ -162,7 +161,7 @@ class eltoro1_4_simple(IStrategy):
 
     # Optimal timeframe for the strategy
     timeframe = '15m'
-    informative_timeframe = '1h'
+    informative_timeframe = '4h'
 
     process_only_new_candles = True
     startup_candle_count = 79
@@ -251,18 +250,18 @@ class eltoro1_4_simple(IStrategy):
                 for stop1a in self.ts1.range:
                     self.dp.send_msg(f'*** {pair} *** Profit {current_profit} - lvl1 {stop1}/{stop1a} activated')
                     return stop1a 
-        # for stop0 in self.tsl_target0.range:
-        #     if (current_profit > stop0):
-        #         for stop0a in self.ts0.range:
-        #             self.dp.send_msg(f'*** {pair} *** Profit {current_profit} - lvl0 {stop0}/{stop0a} activated')
-        #             return stop0a 
+        for stop0 in self.tsl_target0.range:
+            if (current_profit > stop0):
+                for stop0a in self.ts0.range:
+                    self.dp.send_msg(f'*** {pair} *** Profit {current_profit} - lvl0 {stop0}/{stop0a} activated')
+                    return stop0a 
 
         return self.stoploss
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
         if self.dp:
-            inf_tf = '1h'
+            inf_tf = '4h'
             pair = metadata['pair']
             # print(pair)
             informative = self.dp.get_pair_dataframe(pair=f"BTC/USDT", timeframe=inf_tf)
@@ -374,7 +373,7 @@ class eltoro1_4_simple(IStrategy):
 
         dataframe['willr_weight'] = ((dataframe['willr_buy1']+dataframe['willr_buy2']+dataframe['willr_buy3'])/3) * self.x5.value
 
-        dataframe.loc[(dataframe['close'] > dataframe['hma_50']), 'hma_buy1'] = 2
+        dataframe.loc[(dataframe['close'] > dataframe['hma_50']), 'hma_buy1'] = 1
         dataframe.loc[(dataframe['close'] < dataframe['hma_50']), 'hma_buy1'] = -1
 
         dataframe.loc[(dataframe['hma_50_pc'] > self.hma_buy_pc.value) & (dataframe['hma_50'] > dataframe['200_SMA']), 'hma_buy2'] = 1
@@ -382,8 +381,8 @@ class eltoro1_4_simple(IStrategy):
 
         dataframe['hma_weight'] = ((dataframe['hma_buy1']+dataframe['hma_buy2'])/2) * self.x6.value
 
-        dataframe.loc[(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value)), 'base_ma_buy1'] = 2
-        dataframe.loc[(dataframe['close'] > (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value)), 'base_ma_buy'] = 0
+        dataframe.loc[(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value)), 'base_ma_buy1'] = 1
+        dataframe.loc[(dataframe['close'] > (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value)), 'base_ma_buy'] = -1
 
         dataframe.loc[(dataframe['close'] < dataframe[f'ma_buy_{self.base_nb_candles_buy.value}']), 'base_ma_buy2'] = 1
         dataframe.loc[(dataframe['close'] > dataframe[f'ma_buy_{self.base_nb_candles_buy.value}']), 'base_ma_buy2'] = -1
@@ -494,9 +493,9 @@ class eltoro1_4_simple(IStrategy):
         dataframe.loc[
             (
                 (dataframe['auto_buy_decision'] >= self.auto_buy.value) &
-                (dataframe['auto_buy_decision'] < dataframe['auto_buy']) &
-                (dataframe['INFEWO_1h'] >= self.bull.value) & 
-                (dataframe['INFEWO_1h'] > dataframe['INFEWO_1h'].shift(4)) &
+                # (qtpylib.crossed_above(dataframe['auto_buy_decision'], self.auto_buy.value)) &
+                (dataframe['BTC_EWO_Fast_4h'] >= self.bull.value) &
+                (dataframe['BTC_EWO_Fast_4h'] > dataframe['BTC_EWO_Fast_4h'].shift(1)) &
                 (dataframe['volume'] > 0)
             ),
             ['enter_long', 'enter_tag']] = (1, 'auto buy bullzzz up')
@@ -504,9 +503,9 @@ class eltoro1_4_simple(IStrategy):
         dataframe.loc[
             (
                 (dataframe['auto_buy_decision'] >= (self.auto_buy.value + self.auto_buy_down.value)) &
-                (dataframe['auto_buy_decision'] < dataframe['auto_buy']) &
-                (dataframe['INFEWO_1h'] >= self.bull.value) &
-                (dataframe['INFEWO_1h'] <= dataframe['INFEWO_1h'].shift(4)) &
+                # (qtpylib.crossed_above(dataframe['auto_buy_decision'], (self.auto_buy.value + self.auto_buy_down.value))) &
+                (dataframe['BTC_EWO_Fast_4h'] >= self.bull.value) &
+                (dataframe['BTC_EWO_Fast_4h'] <= dataframe['BTC_EWO_Fast_4h'].shift(1)) &
                 (dataframe['volume'] > 0)
             ),
             ['enter_long', 'enter_tag']] = (1, 'auto buy bullzzz down')
@@ -514,9 +513,9 @@ class eltoro1_4_simple(IStrategy):
         dataframe.loc[
             (
                 (dataframe['auto_buy_decision'] >= (self.auto_buy.value + self.auto_buy_bearzzz.value)) &
-                (dataframe['auto_buy_decision'] < dataframe['auto_buy']) &
-                (dataframe['INFEWO_1h'] < self.bull.value) &
-                (dataframe['INFEWO_1h'] > dataframe['INFEWO_1h'].shift(4)) &
+                # (qtpylib.crossed_above(dataframe['auto_buy_decision'], (self.auto_buy.value + self.auto_buy_bearzzz.value))) &
+                (dataframe['BTC_EWO_Fast_4h'] < self.bull.value) &
+                (dataframe['BTC_EWO_Fast_4h'] > dataframe['BTC_EWO_Fast_4h'].shift(1)) &
                 (dataframe['volume'] > 0)
             ),
             ['enter_long', 'enter_tag']] = (1, 'auto buy bearzzz up')
@@ -524,23 +523,12 @@ class eltoro1_4_simple(IStrategy):
         dataframe.loc[
             (
                 (dataframe['auto_buy_decision'] >= (self.auto_buy.value + self.auto_buy_bearzzz.value + self.auto_buy_bearzzz_down.value)) &
-                (dataframe['auto_buy_decision'] < dataframe['auto_buy']) &
-                (dataframe['INFEWO_1h'] < self.bull.value) &
-                (dataframe['INFEWO_1h'] <= dataframe['INFEWO_1h'].shift(4)) &
+                # (qtpylib.crossed_above(dataframe['auto_buy_decision'], (self.auto_buy.value + self.auto_buy_bearzzz.value + self.auto_buy_bearzzz_down.value))) &
+                (dataframe['BTC_EWO_Fast_4h'] < self.bull.value) &
+                (dataframe['BTC_EWO_Fast_4h'] <= dataframe['BTC_EWO_Fast_4h'].shift(1)) &
                 (dataframe['volume'] > 0)
             ),
             ['enter_long', 'enter_tag']] = (1, 'auto buy bearzzz down')
-
-        dataframe.loc[
-            (
-                (dataframe['auto_buy_decision'] > self.auto_buy_EWO.value) &
-                (dataframe['auto_buy_decision'] > dataframe['auto_buy_decision'].shift(1)) &
-                (dataframe['INFEWO_1h'] > dataframe['INFEWO_1h'].shift(4)) &
-                (dataframe['INFEWO_1h'].shift(4) < dataframe['INFEWO_1h'].shift(8)) &
-                # (dataframe['INFEWO_1h'].shift(48) > dataframe['INFEWO_1h'].shift(32)) &
-                (dataframe['volume'] > 0)
-            ),
-            ['enter_long', 'enter_tag']] = (1, '1h EWO Transition')
 
         return dataframe
 
@@ -551,9 +539,7 @@ class eltoro1_4_simple(IStrategy):
             
                 (dataframe['auto_sell_decision'] >= (self.auto_sell_bull.value + self.auto_sell_bear.value)) &
                 (dataframe['close'] < dataframe['hma_50']) & 
-                (dataframe['INFEWO_1h'] < self.bull.value) &
-                (dataframe['INFEWO_1h'] < dataframe['BTC_EWO_Fast_1h']) &
-                (dataframe['INFEWO_1h'] <= dataframe['INFEWO_1h'].shift(2)) &
+                (dataframe['BTC_EWO_Fast_4h'] < self.bull.value) &
                 (dataframe['volume'] > 0)
 
             ),
@@ -565,9 +551,7 @@ class eltoro1_4_simple(IStrategy):
             
                 (dataframe['auto_sell_decision'] >= (self.auto_sell_bear.value)) &
                 (dataframe['close'] < dataframe['hma_50']) & 
-                (dataframe['INFEWO_1h'] > self.bull.value) &
-                (dataframe['INFEWO_1h'] < dataframe['BTC_EWO_Fast_1h']) &
-                (dataframe['INFEWO_1h'] <= dataframe['INFEWO_1h'].shift(4)) &
+                (dataframe['BTC_EWO_Fast_4h'] > self.bull.value) &
                 (dataframe['volume'] > 0)
 
             ),

@@ -1,0 +1,88 @@
+{
+  "strategy_name": "kalthetank",
+  "params": {
+    "roi": {},
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": 0.087,
+      "trailing_stop_positive_offset": 0.118,
+      "trailing_only_offset_is_reached": false
+    },
+    "buy": {
+      "Q": 0.1984,
+      "R": 0.482,
+      "buy_cl1": 0.19,
+      "buy_cl2": 0.16,
+      "buy_cl3": 0.39,
+      "buy_cl4": 0.15,
+      "buy_cls": 0.23,
+      "buy_rsi": 38,
+      "entryX": 0.999,
+      "filldelay": 190,
+      "increment": 1.0007,
+      "l_window_size": 46,
+      "max_dca_multiplier": 1.0,
+      "max_epa": 1,
+      "stake0": 1.1,
+      "stake1": 0.9,
+      "stake2": 1.1,
+      "stake3": 1.0,
+      "u_window_size": 179,
+      "use0": false,
+      "use1": true,
+      "use2": false,
+      "use3": true,
+      "use4": false,
+      "use5": false,
+      "use6": true,
+      "use7": true,
+      "use8": true,
+      "use9": true,
+      "use_static": false
+    },
+    "sell": {
+      "sell_cl1": 0.82,
+      "sell_cl2": 0.83,
+      "sell_cl3": 0.93,
+      "sell_cl4": 0.88,
+      "sell_cls": 0.93,
+      "sell_rsi": 98,
+      "time4": 254,
+      "use10": false,
+      "use11": false,
+      "use12": false,
+      "use13": false,
+      "use14": true,
+      "use15": true,
+      "use16": true,
+      "use17": false,
+      "use18": false,
+      "use19": true
+    },
+    "protection": {
+      "cooldown_lookback": 12,
+      "stop_duration": 5,
+      "time0": 1638,
+      "time1": 2901,
+      "time2": 4500,
+      "time3": 6981,
+      "use_roi1": false,
+      "use_roi2": false,
+      "use_roi3": false,
+      "use_roi4": false,
+      "use_stop1": false,
+      "use_stop2": false,
+      "use_stop3": false,
+      "use_stop4": false,
+      "use_stop_protection": true
+    },
+    "stoploss": {
+      "stoploss": -0.158
+    },
+    "max_open_trades": {
+      "max_open_trades": 5
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-04-20 03:50:50.206493+00:00"
+}
